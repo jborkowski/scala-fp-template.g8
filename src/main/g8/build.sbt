@@ -8,6 +8,8 @@ lazy val root = (project in file(".")).
     tests
   )
 
+addCommandAlias("fmt", ";scalafmt ;test:scalafmt ;it:scalafmt")
+
 lazy val commonSettings = Seq(
   name := "$name;format="lower,word"$",
   organization := "$organization;format="lower,wors"$",
