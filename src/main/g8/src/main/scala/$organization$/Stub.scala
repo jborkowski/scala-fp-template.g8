@@ -1,4 +1,4 @@
-package com.jobo
+package $organization$
 
 import cats._
 import cats.implicits._ 
