@@ -54,7 +54,7 @@ lazy val dependencies = {
     "fs2-io"
   )
 
-  $if(doobieenabled.truthy)$
+  $if(doobie-enabled.truthy)$
   val doobie = dep("org.tpolecat")("$doobieVersion$")(
     "doobie-core",
     "doobie-h2",               // H2 driver 1.4.197 + type mappings.
@@ -63,7 +63,7 @@ lazy val dependencies = {
   ) :+ ("org.flywaydb"   % "flyway-core" % "5.2.0")
   $endif$
 
-  $if(http4senabled.truthy)$
+  $if(http4s-enabled.truthy)$
   val http4s = dep("org.http4s")("$http4sVersion$")(
     "http4s-dsl",
     "http4s-blaze-server",
@@ -71,7 +71,7 @@ lazy val dependencies = {
   )
   $endif$
 
-  $if(circeenabled.truthy)$
+  $if(circe-enabled.truthy)$
   val circe = dep("io.circe")("$circeVersion$")(
     "circe-core",
     "circe-generic",
@@ -94,14 +94,13 @@ lazy val dependencies = {
   val deps =
     libraryDependencies ++= Seq(
       fs2,
-      http4s,
-      $if(http4snabled.truthy)$
+      $if(http4s-enabled.truthy)$
       http4s,
       $endif$
-      $if(doobieenabled.truthy)$
+      $if(doobie-enabled.truthy)$
       doobie,
       $endif$
-      $if(circeenabled.truthy)$
+      $if(circe-enabled.truthy)$
       circe,
       $endif$
       mixed
@@ -117,7 +116,7 @@ lazy val tests = {
     )
 
     val mixed = Seq(
-      $if(doobieenabled.truthy)$
+      $if(doobie-enabled.truthy)$
       "org.tpolecat" %% "$doobieVersion$" % "doobie-scalatest",
       $endif$
       "org.scalacheck" %% "scalacheck" % "$scalacheckVersion$"
